@@ -1,101 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>PAN Card Tampering Detector</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>PAN Card Tampering Detector</title>
 
-    <link href="./static/css/materialize.css" text="text/css" rel="stylesheet" media="screen,projection">
+  <link href="./static/css/materialize.css" rel="stylesheet" media="screen,projection" />
+
+  <style>
+    body {
+      background-color: #6a9bf5;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+    }
+
+    nav {
+      background-color: #b7cef4;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    nav h2 {
+      margin: 0;
+      color: #0a1d3f;
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+
+    .upload-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 90vh;
+      background-color: #f7faff;
+      padding: 20px;
+    }
+
+    form {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      max-width: 550px;
+      width: 100%;
+      text-align: center;
+    }
+
+    form h4 {
+      color: #0a1d3f;
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 1.6rem;
+    }
+
+    .upload-box {
+      border: 2px dashed #b7cef4;
+      border-radius: 12px;
+      padding: 50px 20px;
+      background-color: #f9fbff;
+      transition: all 0.3s ease;
+    }
+
+    .upload-box:hover {
+      background-color: #eef4ff;
+      border-color: #6a9bf5;
+      transform: scale(1.02);
+    }
+
+    .upload-box svg {
+      fill: #6a9bf5;
+      transition: 0.3s;
+    }
+
+    .upload-box:hover svg {
+      fill: #486ecf;
+    }
+
+    .upload-box p {
+      margin-top: 10px;
+      color: #0a1d3f;
+      font-weight: 500;
+    }
+
+    #file-name {
+      color: #555;
+      margin-top: 12px;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    button {
+      margin-top: 40px;
+      background-color: #b7cef4 !important;
+      color: #0a1d3f !important;
+      border-radius: 10px;
+      font-weight: 600;
+      padding: 12px 30px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #90b4f4 !important;
+      transform: translateY(-2px);
+    }
+
+    h5 {
+      margin-top: 40px;
+      color: #0a1d3f;
+      font-weight: 600;
+    }
+  </style>
 </head>
-<body style="background-color : #6A9bf5">
 
-    <nav style="background-color: #b7cef4; height: 100px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-        <div class="nav-wrapper container" style="text-align: center;">
-            <a id="logo-container" class="brand-logo center" style="text-decoration: none; color: #0a1d3f;">
-                <h2 style="margin: 0; letter-spacing: 1px;">PAN Card Tampering Detector Tool</h2>
-            </a>
+<body>
+  <nav>
+    <div class="nav-wrapper container">
+      <h2>PAN Card Tampering Detector Tool</h2>
+    </div>
+  </nav>
+
+  <section class="upload-section">
+    <div class="container">
+      <form action="/" method="post" enctype="multipart/form-data">
+        <h4>Upload Your PAN Card Image</h4>
+
+        <div class="upload-box">
+          <label for="file_upload" style="cursor: pointer; display: block;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24">
+              <path d="M19 15v4H5v-4H3v4a2 2 0 002 2h14a2 
+                       2 0 002-2v-4h-2zM11 16h2V8h3l-4-4-4 4h3z"/>
+            </svg>
+            <p>Click to upload your PAN Card image</p>
+          </label>
+          <input type="file" name="file_upload" id="file_upload" accept="image/*" required style="display: none;" />
+          <p id="file-name">No file selected</p>
         </div>
-    </nav>
 
-    <div class="section" id="index-banner" style="display: flex; justify-content: center; align-items: center; min-height: 90vh; background-color: #f7faff;">
-  <div class="container" style="max-width: 600px; width: 100%;">
-    <form action="/" method="post" enctype="multipart/form-data" 
-          style="background: #fff; padding: 40px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); text-align: center;">
+        <button type="submit" class="btn-large waves-effect waves-light">Check</button>
 
-      <h4 style="margin-bottom: 30px; color: #0a1d3f; font-weight: 600;">PAN Card Tampering Detector</h4>
-
-      <div style="border: 2px dashed #b7cef4; border-radius: 12px; padding: 40px 20px; background-color: #f9fbff;">
-        <label for="file_upload" style="cursor: pointer; display: block;">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="#b7cef4" viewBox="0 0 24 24" width="70" height="70">
-            <path d="M19 15v4H5v-4H3v4a2 2 0 0 0 2 2h14a2 
-                     2 0 0 0 2-2v-4h-2zM11 16h2V8h3l-4-4-4 4h3z"/>
-          </svg>
-          <p style="margin-top: 10px; color: #0a1d3f; font-weight: 500;">Click to upload your PAN Card image</p>
-        </label>
-        <input type="file" name="file_upload" id="file_upload" accept="image/*" required style="display: none;">
-        <p id="file-name" style="color: #555; margin-top: 10px; font-size: 14px;">No file selected</p>
-      </div>
-
-      <button type="submit" class="btn-large waves-effect waves-light"
-              style="margin-top: 40px; background-color: #b7cef4; color: #0a1d3f; border-radius: 10px; font-weight: 600;">
-        Check
-      </button>
-
-      <div style="margin-top: 40px;">
-        <h5 style="color: #0a1d3f;">{{pred}}</h5>
-      </div>
-
-    </form>
-  </div>
-</div>
-
-    <!-- <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <div class="row">
-                <form action="/" method="post" class="col s12" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="input-field col s3">
-                        </div>
-
-                        <div class="input-feild col s5" style="margin-left: 20px; margin-top: 100px">
-                            <div class="row">
-                                <label for="first_name"><b>
-                                    Upload PAN Card Image
-                                </b>
-                                </label><br>
-                                <div class="file-feild input-feild">
-                                    <div class="btn" style="background-color: #b7cef4">
-                                        <span>Browse</span>
-                                        <input type="file" name="file_upload" id="file_upload" />
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path-validate" type="text" placeholder="Upload file" name="file_name" id="file_name" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row center">
-                        <button type="submit" class="btn-large" style="background-color: #b7cef4">Check</button>
-                    </div>
-
-                </form>
-                <div style="text-align: center; padding-top: 50px">
-                    <h5>{{pred}}</h5>
-                </div>
-            </div>
-            <br><br>
+        <div>
+          <h5>{{pred}}</h5>
         </div>
-    </div> -->
+      </form>
+    </div>
+  </section>
 
-    <!--    Script.js   -->
-    <script src="./static/js/materialize.js"></script>
-    <script type="text/javascript">
-        document.getElementById('file_upload').onchange = function () {
-            document.getElementById('file_name').value = this.value.slice(12,100)
-        };
-    </script>
+  <script src="./static/js/materialize.js"></script>
+  <script>
+    const fileInput = document.getElementById("file_upload");
+    const fileNameDisplay = document.getElementById("file-name");
 
+    fileInput.addEventListener("change", function () {
+      fileNameDisplay.textContent = this.files.length
+        ? this.files[0].name
+        : "No file selected";
+    });
+  </script>
 </body>
 </html>

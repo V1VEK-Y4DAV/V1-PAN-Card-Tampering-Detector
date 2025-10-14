@@ -10,7 +10,7 @@ class Config(object):
     
     SECRET_KEY = "dilmaangemore"
 
-    UPLOADS = "/home/username/app/app/static/uploads"
+    UPLOADS = os.path.join(basedir, "app/static/uploads")
 
     SESSION_COOKIE_SECURE = True
     DEFAULT_THEME = None
